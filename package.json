@@ -4,7 +4,7 @@
   "description": "Simple starter package for Redux with React and Babel support",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --history-api-fallback --open",
     "lint": "eslint . --config .eslintrc.js",
     "lint:fix": "eslint . --fix",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.jsx --recursive ./test ./src/**/*.spec.jsx",
@@ -31,8 +31,8 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "webpack": "^2.0.0",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
@@ -40,6 +40,7 @@
     "lodash": "^3.10.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-hot-loader": "^3.0.0-beta6",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
     "redux": "^3.0.4"

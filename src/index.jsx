@@ -1,15 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import configureStore from './store/config';
 
-import App from './components/app';
-import reducers from './reducers';
+const store = configureStore();
+const rootEl = document.querySelector('.container');
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+let render = () => {
+  // eslint-disable-next-line global-require
+  const Root = require('./components/app').default;
+  ReactDOM.render(
+    <Provider store={store}>
+      <Root />
+    </Provider>,
+    rootEl,
+  );
+};
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+if (module.hot) {
+  // Support hot reloading of components
+  // and display an overlay for runtime errors
+  const renderApp = render;
+  const renderError = (error) => {
+    ReactDOM.render(
+      <div>error: {error}</div>,
+      rootEl,
+    );
+  };
+
+  render = () => {
+    try {
+      renderApp();
+    } catch (error) {
+      renderError(error);
+    }
+  };
+
+  module.hot.accept('./components/app', () => {
+    setTimeout(render);
+  });
+}
+
+render();
