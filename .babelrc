@@ -3,5 +3,6 @@
   "plugins": [
     // allow for static class properties
     ["transform-class-properties", { "spec": true }],
+    "react-hot-loader/babel",
   ],
 }
