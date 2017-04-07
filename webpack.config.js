@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   entry: [
     'react-hot-loader/patch',
@@ -25,7 +23,6 @@ module.exports = {
     }],
   },
   resolve: {
-    //root: path.resolve(__dirname),
     alias: {
       test: 'test',
     },
